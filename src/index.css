@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 250 250 250;
+  --surface: 255 255 255;
+  --surface2: 243 244 246;
+  --ink-900: 15 23 42;
+  --ink-700: 51 65 85;
+  --ink-500: 100 116 139;
+  --ink-400: 148 163 184;
+  --ink-300: 203 213 225;
+  --line: 226 232 240;
+}
+
+:root.dark {
+  --canvas: 10 37 64;
+  --surface: 17 47 78;
+  --surface2: 30 58 138;
+  --ink-900: 248 250 252;
+  --ink-700: 226 232 240;
+  --ink-500: 148 163 184;
+  --ink-400: 100 116 139;
+  --ink-300: 71 85 105;
+  --line: 30 58 138;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: #E0E7FF;
+  color: #0A2540;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: rgb(var(--canvas));
+  color: rgb(var(--ink-900));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Visible, on-brand focus states */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #635BFF;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
+}
+
+.eyebrow {
+  @apply font-mono text-xs tracking-[0.18em] uppercase;
+  color: #635BFF;
+}
+
+.section-pad {
+  @apply py-20 sm:py-28;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(var(--line)) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--line)) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.text-gradient {
+  background: linear-gradient(95deg, #635BFF 0%, #4F46E5 45%, #9333EA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Custom scrollbar - subtle, light */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--canvas));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line));
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--ink-300));
+}
+
+/* Custom cursor helper (desktop only, toggled via JS) */
+.cursor-active,
+.cursor-active a,
+.cursor-active button {
+  cursor: none;
+}
