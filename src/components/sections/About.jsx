@@ -77,7 +77,7 @@ export default function About() {
           {/* Left Column: Interactive Story Pillars */}
           <div className="lg:col-span-7">
             {/* Tab Navigation Buttons */}
-            <div className="mb-6 flex flex-wrap gap-2">
+            <div className="mb-6 flex flex-wrap gap-1.5 sm:gap-2">
               {personalInfo.aboutPillars.map((pillar) => {
                 const IconComponent = iconMap[pillar.icon] || Sparkles
                 const isActive = activeTab === pillar.id
@@ -86,13 +86,13 @@ export default function About() {
                   <button
                     key={pillar.id}
                     onClick={() => setActiveTab(pillar.id)}
-                    className={`relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 ${
+                    className={`relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] sm:px-4 sm:py-2 sm:text-xs font-semibold transition-all duration-300 ${
                       isActive
                         ? 'border border-indigo-500/30 bg-indigo-500/10 text-indigo-500 shadow-soft'
                         : 'border border-line bg-surface text-ink-500 hover:border-ink-400 hover:text-ink-900'
                     }`}
                   >
-                    <IconComponent size={14} />
+                    <IconComponent size={13} className="flex-none" />
                     <span>{pillar.title}</span>
                   </button>
                 )

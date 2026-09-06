@@ -7,10 +7,10 @@ import { useTheme } from './components/ThemeContext'
 export default function App() {
   const { theme } = useTheme()
   return (
-    <div className="relative min-h-screen bg-canvas">
+    <div className="relative min-h-screen w-full max-w-full overflow-x-hidden bg-canvas">
       <CustomCursor />
       <Navbar />
-      <main>
+      <main className="w-full max-w-full overflow-x-hidden">
         <Home />
       </main>
       <Footer />

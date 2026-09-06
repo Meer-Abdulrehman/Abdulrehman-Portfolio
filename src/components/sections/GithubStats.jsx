@@ -320,10 +320,10 @@ function SnakeGrid() {
 
   return (
     <div>
-      <div className="overflow-x-auto rounded-2xl border border-line bg-[#0d1117] p-4 sm:p-6">
-        <div className="min-w-[680px] grid grid-cols-[repeat(50,minmax(0,1fr))] gap-1.5">
+      <div className="overflow-hidden rounded-2xl border border-line bg-[#0d1117] p-3 sm:p-6">
+        <div className="w-full grid grid-cols-[repeat(50,minmax(0,1fr))] gap-[1.5px] sm:gap-1.5">
           {Array.from({ length: COLS }).map((_, c) => (
-            <div key={c} className="flex flex-col gap-1.5">
+            <div key={c} className="flex flex-col gap-[1.5px] sm:gap-1.5">
               {Array.from({ length: ROWS }).map((_, r) => {
                 const level = grid[r] ? grid[r][c] : 0
                 const snakeIndex = snake.findIndex((seg) => seg.c === c && seg.r === r)
@@ -336,22 +336,22 @@ function SnakeGrid() {
                 if (isHead) {
                   bgColor = '#a855f7' // Glowing Purple Snake Head
                   extraStyles = {
-                    boxShadow: '0 0 10px #a855f7',
-                    transform: 'scale(1.25)',
+                    boxShadow: '0 0 8px #a855f7',
+                    transform: 'scale(1.2)',
                     zIndex: 20,
                   }
                 } else if (isBody) {
                   bgColor = '#d946ef' // Magenta Snake Body
                   extraStyles = {
                     opacity: 1 - snakeIndex * 0.15,
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.05)',
                   }
                 }
 
                 return (
                   <div
                     key={`${c}-${r}`}
-                    className="h-3 w-3 rounded-[3px] transition-all duration-200"
+                    className="aspect-square w-full rounded-[1.5px] sm:rounded-[3px] transition-all duration-200"
                     style={{
                       backgroundColor: bgColor,
                       ...extraStyles,
@@ -364,7 +364,7 @@ function SnakeGrid() {
         </div>
 
         {/* Legend Footer */}
-        <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 text-[11px] font-mono text-gray-400">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-white/10 pt-3 text-[10px] sm:text-[11px] font-mono text-gray-400">
           <div className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-[#a855f7] shadow-[0_0_6px_#a855f7]" />
             <span className="text-gray-300">Snake Head</span>
@@ -375,7 +375,7 @@ function SnakeGrid() {
             {greenShades.map((shade, i) => (
               <span
                 key={i}
-                className="h-3 w-3 rounded-[2px]"
+                className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-[2px]"
                 style={{ backgroundColor: shade }}
               />
             ))}

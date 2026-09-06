@@ -19,7 +19,7 @@ export default function Projects() {
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3)
 
   return (
-    <section id="projects" className="section-pad bg-surface">
+    <section id="projects" className="section-pad bg-surface overflow-hidden">
       <div className="container-page">
         <SectionHeading
           eyebrow="Projects"

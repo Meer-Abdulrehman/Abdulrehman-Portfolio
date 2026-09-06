@@ -53,7 +53,7 @@ export default function AboutVisual() {
       ref={wrapRef}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className="relative mx-auto flex aspect-square w-full max-w-[460px] items-center justify-center py-6"
+      className="relative mx-auto flex aspect-square w-full max-w-[460px] items-center justify-center py-4 scale-[0.8] xs:scale-90 sm:scale-100 transition-transform duration-300"
       aria-hidden="true"
     >
       {/* Ambient background glow */}
