@@ -1,19 +1,21 @@
+import sessionBanner from './articleImages/session_banner.png'
+
 export const blogCategories = ['All', 'Architecture', 'Performance', 'AI & Tools', 'Engineering']
 
 export const blogPosts = [
   {
     id: 1,
-    title: 'Building High-Throughput APIs: Lessons from Scaling Node.js & Redis',
-    slug: 'scaling-nodejs-redis-apis',
+    title: 'Mastering System Design & Modern Software Architecture: Practical Technical Insights',
+    slug: 'mastering-system-design-software-architecture',
     excerpt:
-      'A deep dive into caching strategies, connection pooling, and asynchronous queuing to handle over 10k requests per second cleanly.',
+      'A comprehensive guide and technical deep-dive into system design, microservices, scalable API engineering, and software architecture patterns by Engr. Abdulrehman.',
     category: 'Architecture',
-    date: 'Aug 12, 2026',
+    date: 'Sep 2026',
     readTime: '6 min read',
     featured: true,
-    tags: ['Node.js', 'Redis', 'Performance', 'Backend'],
-    image:
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+    externalUrl: 'https://bit.ly/ArticlesByEngrAbdulrehman',
+    tags: ['System Design', 'Architecture', 'Software Engineering', 'APIs'],
+    image: sessionBanner,
     content: `
 ### The Challenge of High-Throughput Systems
 

@@ -2,12 +2,21 @@ import { motion } from 'framer-motion'
 import { Clock, ArrowUpRight, Calendar, BookOpen, Sparkles } from 'lucide-react'
 
 export default function BlogCard({ post, onSelect, isFeatured = false }) {
+  const handleClick = (e) => {
+    e.stopPropagation()
+    if (post.externalUrl) {
+      window.open(post.externalUrl, '_blank', 'noopener,noreferrer')
+    } else {
+      onSelect(post)
+    }
+  }
+
   if (isFeatured) {
     return (
       <motion.div
         whileHover={{ y: -5 }}
         transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-        onClick={() => onSelect(post)}
+        onClick={handleClick}
         className="group relative cursor-pointer overflow-hidden rounded-3xl border border-indigo-500/30 bg-surface p-6 shadow-card transition-all duration-300 hover:border-indigo-500/60 hover:shadow-lift lg:p-8"
       >
         <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
@@ -68,7 +77,7 @@ export default function BlogCard({ post, onSelect, isFeatured = false }) {
     <motion.div
       whileHover={{ y: -5 }}
       transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-      onClick={() => onSelect(post)}
+      onClick={handleClick}
       className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-line bg-surface p-5 shadow-card transition-all duration-300 hover:border-indigo-500/40 hover:shadow-lift"
     >
       {/* Image */}
