@@ -52,8 +52,12 @@ export default function Navbar() {
     setActive(href)
     const targetEl = document.querySelector(href)
     if (targetEl) {
-      const topOffset = targetEl.getBoundingClientRect().top + window.pageYOffset - 80
-      window.scrollTo({ top: topOffset, behavior: 'smooth' })
+      if (window.lenis) {
+        window.lenis.scrollTo(targetEl, { offset: -80, duration: 1.2 })
+      } else {
+        const topOffset = targetEl.getBoundingClientRect().top + window.pageYOffset - 80
+        window.scrollTo({ top: topOffset, behavior: 'smooth' })
+      }
     }
   }
 
@@ -74,10 +78,12 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, '#home')}
             className="flex items-center gap-2.5 font-display text-base font-bold tracking-tight sm:text-lg"
           >
-            <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600 text-white shadow-[0_0_15px_rgba(99,102,241,0.5)]">
-              <span className="font-display text-sm font-extrabold tracking-widest">
-                {personalInfo.name.charAt(0)}
-              </span>
+            <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-indigo-500/40 shadow-[0_0_15px_rgba(99,102,241,0.35)]">
+              <img
+                src="/abdulrehman.png"
+                alt={personalInfo.name}
+                className="h-full w-full object-cover object-top"
+              />
             </div>
             <span className="hidden text-ink-900 font-semibold sm:inline-block">
               {personalInfo.name}
@@ -177,7 +183,6 @@ export default function Navbar() {
                     }`}
                   >
                     <span>{link.label}</span>
-                    {isActive && <Sparkles size={14} className="text-indigo-500" />}
                   </motion.a>
                 )
               })}

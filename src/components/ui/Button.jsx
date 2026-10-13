@@ -5,9 +5,9 @@ const variants = {
   primary:
     'bg-ink-900 text-canvas hover:bg-ink-700 shadow-soft border border-ink-700/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]',
   accent:
-    'bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 text-white shadow-[0_4px_20px_rgba(99,102,241,0.4)] hover:shadow-[0_8px_30px_rgba(99,102,241,0.75)] border border-indigo-400/30',
+    'bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 text-white shadow-[0_4px_20px_rgba(99,102,241,0.35)] hover:shadow-[0_8px_30px_rgba(99,102,241,0.65)] border border-indigo-400/40 hover:border-indigo-300/60',
   outline:
-    'bg-transparent text-ink-900 border border-line hover:border-indigo-500/50 hover:bg-indigo-500/5 shadow-sm',
+    'bg-surface/80 backdrop-blur-md text-ink-900 border border-line/80 hover:border-indigo-500/50 hover:bg-surface hover:text-indigo-500 shadow-soft hover:shadow-card',
   ghost: 'bg-transparent text-ink-900 hover:bg-surface2/80',
 }
 

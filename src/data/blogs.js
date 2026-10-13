@@ -1,4 +1,6 @@
 import sessionBanner from './articleImages/session_banner.png'
+import dockerBanner from './articleImages/docker_banner.png'
+import linkedinBanner from './articleImages/linkedin_banner_v4.png'
 
 export const blogCategories = ['All', 'Architecture', 'Performance', 'AI & Tools', 'Engineering']
 
@@ -48,75 +50,44 @@ System performance is not about writing faster loops — it is about intelligent
   },
   {
     id: 2,
-    title: 'Why Micro-Frontends Fail and When You Should Actually Use Them',
-    slug: 'micro-frontends-architectural-tradeoffs',
+    title: 'Docker Bloated Images, Slow Deploys: How I Fixed It',
+    slug: 'docker-bloated-images-slow-deploys-how-i-fixed-it',
     excerpt:
-      'Exploring the hidden complexities of distributed frontend architectures and why a modular monolith is often the superior choice.',
-    category: 'Engineering',
-    date: 'Jul 28, 2026',
-    readTime: '8 min read',
+      'A real-world engineering walkthrough on optimizing Docker container sizes from 1.2GB down to 120MB, multi-stage builds, and speeding up CI/CD deployments.',
+    category: 'Performance',
+    date: 'Jul 2026',
+    readTime: '5 min read',
     featured: false,
-    tags: ['Frontend', 'Architecture', 'React', 'Module Federation'],
-    image:
-      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+    externalUrl: 'https://medium.com/@abdulrehmantech.me/docker-bloated-images-slow-deploys-how-i-fixed-it-f595780e6eae',
+    tags: ['Docker', 'DevOps', 'CI/CD', 'Optimization'],
+    image: dockerBanner,
     content: `
-Micro-frontends have become a popular buzzword in enterprise engineering teams. However, splitting a web frontend into dynamic Module Federation bundles introduces significant operational friction.
+### The Problem: Giant Docker Images & Slow CI/CD
 
-#### Common Pitfalls:
-- **Dependency Duplication**: Loading multiple versions of React or UI libraries over the wire.
-- **Cascading Bundle Loading**: Network waterfalls during route transitions.
-- **Fragmented Styling Systems**: Maintaining design tokens across autonomous repos.
+Bloated container images consume excessive storage, strain network bandwidth during pulls, and drastically slow down deployment pipelines.
 
-#### When to Use Micro-Frontends:
-Only adopt micro-frontends when you have **multiple independent engineering squads** who need to deploy code without blocking each other's pipeline. For smaller teams, a clean **Modular Monolith** in Next.js or Vite is significantly easier to maintain.
+In this deep dive, learn how we shrank our production Docker image by over 90% (from 1.2GB to 120MB) using multi-stage builds, alpine base images, and clean caching techniques.
     `,
   },
   {
     id: 3,
-    title: 'Leveraging Local AI Models for Developer Tooling & Automation',
-    slug: 'local-ai-models-developer-automation',
+    title: 'From Heap Crashes to a Live Multi-Vendor App: A DevOps Case Study',
+    slug: 'from-heap-crashes-to-live-multi-vendor-app-aws-devops',
     excerpt:
-      'How to run quantized LLMs locally with Ollama to automate code reviews, generate documentation, and secure private codebase context.',
-    category: 'AI & Tools',
-    date: 'Jul 15, 2026',
-    readTime: '5 min read',
-    featured: false,
-    tags: ['AI', 'Ollama', 'Python', 'Developer Tools'],
-    image:
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-    content: `
-Cloud LLM APIs are great, but for proprietary codebases, sending raw code to external servers poses privacy and compliance risks.
-
-By hosting quantized 8-bit local models (like Llama 3 or Mistral) on developer workstations or internal servers, engineering teams can build custom automated workflows with zero API cost and 100% data privacy.
-
-#### Use Cases:
-- **Automated Pull Request Summaries**
-- **Internal API Spec Generator**
-- **Offline Code Refactoring Assistant**
-    `,
-  },
-  {
-    id: 4,
-    title: 'Mastering Database Indexing: B-Trees, GiST, and Query Profiling',
-    slug: 'mastering-database-indexing-postgresql',
-    excerpt:
-      'A practical guide to analyzing PostgreSQL query plans (`EXPLAIN ANALYZE`), choosing index types, and eliminating slow queries.',
-    category: 'Performance',
-    date: 'Jun 30, 2026',
+      'A complete DevOps case study on debugging memory leaks, resolving Node.js heap crashes, and deploying a scalable MERN stack application to AWS EC2.',
+    category: 'Engineering',
+    date: 'Jun 2026',
     readTime: '7 min read',
     featured: false,
-    tags: ['PostgreSQL', 'Database', 'SQL', 'Performance'],
-    image:
-      'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80',
+    externalUrl: 'https://medium.com/@abdulrehmantech.me/from-heap-crashes-to-a-live-multi-vendor-app-a-devops-case-study-on-deploying-a-mern-stack-to-aws-d67ad3798d4c',
+    tags: ['AWS', 'DevOps', 'MERN Stack', 'Node.js'],
+    image: linkedinBanner,
     content: `
-Slow database queries are the root cause of 90% of web application performance issues. Adding indexes randomly can degrade write throughput while failing to speed up read queries.
+### DevOps & Production Engineering Case Study
 
-#### Index Types Explained:
-1. **B-Tree**: The default choice for equality (\`=\`) and range queries (\`<\`, \`>\`).
-2. **GIN (Generalized Inverted Index)**: Essential for full-text search and querying JSONB columns.
-3. **GiST / BRIN**: Ideal for geometric data, timestamps, and massive append-only tables.
+Deploying a complex multi-vendor application to cloud infrastructure comes with unexpected hurdles — from memory constraints causing process kills to reverse proxy configuration headaches.
 
-Always inspect query plans using \`EXPLAIN (ANALYZE, BUFFERS)\` before adding indexes to production databases!
+This engineering case study documents the end-to-end journey of diagnosing heap limit issues, configuring system swap, containerizing workloads, and orchestrating stable deployments on AWS.
     `,
   },
 ]

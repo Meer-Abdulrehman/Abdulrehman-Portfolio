@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mail, Github, Linkedin, Phone, CheckCircle2, AlertCircle, Send, Sparkles, Clock, MapPin } from 'lucide-react'
+import { Mail, Github, Linkedin, Phone, CheckCircle2, AlertCircle, Send, Sparkles, Clock, MapPin, Loader2 } from 'lucide-react'
 import { personalInfo } from '../../data/personalInfo'
 import SectionHeading from '../ui/SectionHeading'
 import Button from '../ui/Button'
@@ -27,7 +27,8 @@ const fieldClass =
 export default function Contact() {
   const [values, setValues] = useState(initialForm)
   const [errors, setErrors] = useState({})
-  const [status, setStatus] = useState('idle') // idle | success | error
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [serverError, setServerError] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -35,8 +36,9 @@ export default function Contact() {
     if (errors[name]) setErrors((er) => ({ ...er, [name]: undefined }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setServerError('')
     const newErrors = validate(values)
     setErrors(newErrors)
 
@@ -45,8 +47,43 @@ export default function Contact() {
       return
     }
 
-    setStatus('success')
-    setValues(initialForm)
+    setStatus('loading')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'ce045491-0d38-45d4-b7f3-022d5f3891c7',
+          name: values.name,
+          email: values.email,
+          project_type: values.projectType,
+          budget: values.budget || 'Not specified',
+          message: values.message,
+          from_name: `${values.name} (Portfolio Inquiry)`,
+          subject: `New Project Inquiry from ${values.name} - ${values.projectType}`,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setStatus('success')
+        setValues(initialForm)
+        setTimeout(() => {
+          setStatus('idle')
+        }, 6000)
+      } else {
+        setStatus('error')
+        setServerError(result.message || 'Something went wrong. Please try again.')
+      }
+    } catch (err) {
+      setStatus('error')
+      setServerError('Network error. Please check your connection and try again.')
+    }
   }
 
   return (
@@ -118,8 +155,8 @@ export default function Contact() {
               <h3 className="font-display text-lg font-bold text-ink-900">
                 Send a Message
               </h3>
-              <span className="flex items-center gap-1 font-mono text-[10px] font-bold text-indigo-400 uppercase tracking-widest">
-                <Sparkles size={12} /> Direct Dispatch
+              <span className="font-mono text-[10px] font-bold text-indigo-400 uppercase tracking-widest">
+                Direct Dispatch
               </span>
             </div>
 
@@ -187,10 +224,20 @@ export default function Contact() {
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-line/60 pt-5">
               <button
                 type="submit"
-                className="group inline-flex items-center gap-2.5 rounded-2xl bg-indigo-600 px-7 py-3.5 text-xs font-bold text-white shadow-soft transition-all duration-300 hover:bg-indigo-500 hover:shadow-indigo-500/25 active:scale-95"
+                disabled={status === 'loading'}
+                className="group inline-flex items-center gap-2.5 rounded-2xl bg-indigo-600 px-7 py-3.5 text-xs font-bold text-white shadow-soft transition-all duration-300 hover:bg-indigo-500 hover:shadow-indigo-500/25 active:scale-95 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                <span>Send Message</span>
-                <Send size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                {status === 'loading' ? (
+                  <>
+                    <Loader2 size={15} className="animate-spin" />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <Send size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </>
+                )}
               </button>
 
               <AnimatePresence mode="wait">
@@ -213,7 +260,7 @@ export default function Contact() {
                     exit={{ opacity: 0 }}
                     className="flex items-center gap-1.5 text-xs font-bold text-red-400"
                   >
-                    <AlertCircle size={15} /> Please fill out the required fields.
+                    <AlertCircle size={15} /> {serverError || 'Please fill out the required fields.'}
                   </motion.p>
                 )}
               </AnimatePresence>

@@ -28,8 +28,7 @@ export default function BlogCard({ post, onSelect, isFeatured = false }) {
               className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-72 lg:h-80"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-canvas/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-canvas/90 px-3.5 py-1.5 font-mono text-[11px] font-bold text-indigo-400 backdrop-blur-md shadow-soft">
-              <Sparkles size={12} className="text-indigo-400" />
+            <span className="absolute top-4 left-4 inline-flex items-center rounded-full border border-indigo-500/30 bg-canvas/90 px-3.5 py-1.5 font-mono text-[11px] font-bold text-indigo-400 backdrop-blur-md shadow-soft">
               Featured Deep-Dive
             </span>
           </div>

@@ -2,9 +2,9 @@ export const personalInfo = {
   name: 'Abdulrehman',
   role: 'Full-Stack Software Engineer',
   email: 'abdulrehmantech.me@gmail.com',
-  phone: '+92 3204335746',
+  phone: '+92 319 2517146',
   location: 'Pakistan',
-  resumeUrl: '#',
+  resumeUrl: '/resume/resume.pdf',
   social: {
     github: 'https://github.com/Meer-Abdulrehman',
     linkedin: 'https://www.linkedin.com/in/abdulrehman1057/',
@@ -76,8 +76,8 @@ export const personalInfo = {
 }
 
 export const stats = [
-  { value: '2+', label: 'Years Experience' },
-  { value: '10+', label: 'Projects Built' },
+  { value: '3', label: 'Years Experience' },
+  { value: '15+', label: 'Projects Built' },
   { value: 'Full-Stack', label: 'Software Engineer' },
   { value: '1st Place', label: 'Hackathon Winner' },
 ]
