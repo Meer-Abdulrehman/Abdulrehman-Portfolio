@@ -50,7 +50,7 @@ export default function Footer() {
           <p className="text-xs text-ink-400">
             © {year} {personalInfo.name}. All rights reserved.
           </p>
-          <p className="text-xs text-ink-400">Built with React, Tailwind CSS & Framer Motion.</p>
+         
         </div>
       </div>
     </footer>
